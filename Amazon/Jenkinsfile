@@ -1,4 +1,6 @@
 // Added feature 1
+pipeline{
+  agent any
   stages {
    stage('clone project') {
       steps {
