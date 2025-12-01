@@ -1,6 +1,6 @@
 // Added feature 1
 mkdir newjenkins 
-  mv jenkinsfile newjenkins
+  mv Jenkinsfile newjenkins
 pipeline{
   agent any
   stages {
