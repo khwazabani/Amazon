@@ -1,5 +1,9 @@
 // Added feature 1
+
+
 pipeline{
+  mkdir -p  ci
+cat > ci/Jenkinsfile << 'EOF'
   agent any
   stages {
    stage('clone project') {
@@ -34,5 +38,5 @@ pipeline{
   }
 }
 
-
+EOF
 
