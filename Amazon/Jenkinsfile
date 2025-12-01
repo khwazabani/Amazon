@@ -38,4 +38,7 @@ pipeline{
 }
 
 EOF
+git add ci/Jenkinsfile
+git commit -m "Add Jenkinsfile in ci/ folder"
+git push origin master_nojenkinsfile
 
