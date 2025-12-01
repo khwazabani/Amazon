@@ -1,6 +1,6 @@
 // Added feature 1
 mkdir newjenkins 
-  mv Amazon/jenkinsfile mavenfolder/amazon/Amazon/newjenkins
+  mv jenkinsfile mavenfolder/amazon/Amazon/newjenkins
 pipeline{
   agent any
   stages {
