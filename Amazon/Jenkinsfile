@@ -1,7 +1,6 @@
 // Added feature 1
-
-  mkdir -p  ci
-cat > ci/Jenkinsfile << 'EOF'
+mkdir newjenkins 
+  mv mavenfolder/amazon/Amazon/Amazon/jenkinsfile newjenkinsfile
 pipeline{
   agent any
   stages {
@@ -37,8 +36,4 @@ pipeline{
   }
 }
 
-EOF
-git add ci/Jenkinsfile
-git commit -m "Add Jenkinsfile in ci/ folder"
-git push origin master_nojenkinsfile
 
