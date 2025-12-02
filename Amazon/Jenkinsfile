@@ -14,7 +14,7 @@ pipeline{
            sh 'mvn compile'
        }
    }
-   
+   }
    stage('test') {
       steps {
           dir('Amazon')
@@ -32,7 +32,7 @@ pipeline{
    }
 }
   }
-}
+
 
    post {
     success {
