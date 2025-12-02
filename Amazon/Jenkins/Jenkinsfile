@@ -1,1 +1,35 @@
+pipeline{
+  agent any
+  stages {
+   stage('clone project') {
+      steps {
+           git branch:'master', url:'https://github.com/khwazabani/Amazon.git'
+   }
+}
+   stage('compile') {
+      steps {
+          dir('Amazon/Jenkins')
+          {
+            
+           sh 'mvn compile'
+       }
+   }
+   }
+   stage('test') {
+      steps {
+          dir('Amazon/Jenkins')
+          {
+           sh 'mvn test'
+       }
+      }
+   }
 
+   stage('build') {
+      steps {
+          dir('Amazon/Jenkins'){
+           sh 'mvn clean install'
+       }
+   }
+}
+  }
+}
