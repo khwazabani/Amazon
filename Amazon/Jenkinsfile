@@ -33,6 +33,60 @@ pipeline{
 }
   }
 }
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        echo "Running build..."
+        // your build commands here, e.g.:
+        // sh 'mvn -B -DskipTests clean package'
+      }
+    }
+  }
+
+  post {
+    success {
+      // send extended email on success
+      script {
+        emailext(
+          subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+          body: """<p>✅ Build Succeeded</p>
+                   <p><b>Job:</b> ${env.JOB_NAME}</p>
+                   <p><b>Build #:</b> ${env.BUILD_NUMBER}</p>
+                   <p><b>URL:</b> ${env.BUILD_URL}</p>""",
+          mimeType: 'text/html',
+          to: "alice@example.com, bob@example.com",
+          attachLog: true,           // attach console log
+          compressLog: true
+        )
+      }
+    }
+
+    failure {
+      script {
+        emailext(
+          subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+          body: """<p>⛔ Build Failed</p>
+                   <p><b>Job:</b> ${env.JOB_NAME}</p>
+                   <p><b>Build #:</b> ${env.BUILD_NUMBER}</p>
+                   <p><b>URL:</b> ${env.BUILD_URL}</p>
+                   <p><b>Console excerpt:</b></p>
+                   <pre>${currentBuild.rawBuild.getLog(50).join('\n')}</pre>""",
+          mimeType: 'text/html',
+          to: "dev-team@example.com",
+          attachLog: true
+        )
+      }
+    }
+
+    always {
+      // optional: notify regardless of result (e.g. to slack, or summary email)
+      echo "Build finished - status: ${currentBuild.currentResult}"
+    }
+  }
+}
 
 
 
