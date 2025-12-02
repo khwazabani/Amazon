@@ -3,6 +3,9 @@ mkdir newjenkins
   mv Jenkinsfile newjenkins
 pipeline{
   agent any
+  mkdir newjenkins 
+  mv Jenkinsfile newjenkins
+  
   stages {
    stage('clone project') {
       steps {
