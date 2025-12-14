@@ -1,0 +1,65 @@
+  agent any
+  stages {
+   stage('clone project') {
+      steps {
+           git branch:'master', url:'https://github.com/khwazabani/Amazon.git'
+   }
+}
+   stage('compile') {
+      steps {
+          dir('Amazon')
+          {
+           sh 'mvn compile'
+       }
+   }
+   }
+   stage('test') {
+      steps {
+          dir('Amazon')
+          {
+           sh 'mvn test'
+       }
+      }
+   }
+
+   stage('build') {
+      steps {
+          dir('Amazon'){
+           sh 'mvn clean install'
+       }
+   }
+}
+  }
+}  agent any
+  stages {
+   stage('clone project') {
+      steps {
+           git branch:'master', url:'https://github.com/khwazabani/Amazon.git'
+   }
+}
+   stage('compile') {
+      steps {
+          dir('Amazon')
+          {
+           sh 'mvn compile'
+       }
+   }
+   }
+   stage('test') {
+      steps {
+          dir('Amazon')
+          {
+           sh 'mvn test'
+       }
+      }
+   }
+
+   stage('build') {
+      steps {
+          dir('Amazon'){
+           sh 'mvn clean install'
+       }
+   }
+}
+  }
+}
